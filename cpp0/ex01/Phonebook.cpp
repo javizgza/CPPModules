@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javierzaragozatejeda <javierzaragozatej    +#+  +:+       +#+        */
+/*   By: jazarago <jazarago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 10:36:37 by javierzarag       #+#    #+#             */
-/*   Updated: 2025/06/03 21:57:22 by javierzarag      ###   ########.fr       */
+/*   Updated: 2025/06/04 11:09:50 by jazarago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,35 @@ void PhoneBook::addContact()
     std::getline(std::cin, name);
     if (name.empty())
     {
-        std::cout << "Error: First Name can't be empty" << std::endl;
+        std::cout << "\x1B[31m\nError: First Name can't be empty\x1B[0m" << std::endl;
         return ;
     }
     std::cout << "Last Name: ";
     std::getline(std::cin, lastName);
     if (lastName.empty())
     {
-        std::cout << "Error: Last Name can't be empty" << std::endl;
+        std::cout << "\x1B[31m\nError: Last Name can't be empty\x1B[0m" << std::endl;
         return ;
     }
     std::cout << "NickName: ";
     std::getline(std::cin, nickName);
     if (nickName.empty())
     {
-        std::cout << "Error: NickName can't be empty" << std::endl;
+        std::cout << "\x1B[31m\nError: NickName can't be empty\x1B[0m" << std::endl;
         return ;
     }
     std::cout << "Phone Number: ";
     std::getline(std::cin, phoneNumber);
     if (phoneNumber.empty())
     {
-        std::cout << "Error: Phone Number can't be empty" << std::endl;
+        std::cout << "\x1B[31m\nError: Phone Number can't be empty\x1B[0m" << std::endl;
         return ;
     }
     std::cout << "Darkest Secret: ";
     std::getline(std::cin, darkestSecret);
     if (darkestSecret.empty())
     {
-        std::cout << "Error: Darkest Secret can't be empty" << std::endl;
+        std::cout << "\x1B[31m\nError: Darkest Secret can't be empty\x1B[0m" << std::endl;
         return ;
     }
     Contact newContact;
@@ -61,7 +61,7 @@ void PhoneBook::addContact()
     {
         contacts[count] = newContact;
         count++;
-        std::cout << "\x1B[32mNew Contact Added!\x1B[0m" << std::endl;
+        std::cout << "\x1B[32m\nNew Contact Added!\x1B[0m" << std::endl;
     }
     else
     {
@@ -77,60 +77,55 @@ void PhoneBook::searchContact() const
 {
     if (count == 0)
     {
-        std::cout << "\x1B[33m\nThere are no contacts yet!\x1B[0m\n" << std::endl;
+        std::cout << "\nThere are no contacts yet!" << std::endl;
         return;
     }
     std::cout << " ___________________________________________ " << std::endl;
     std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
 
-    char c = '0';
-    int displayed = 0;
-    while (++c <= '8')
+    for (int i = 0; i < 8; i++)
     {
-        int idx = c - '1';
-        if (!contacts[idx].getName().empty())
-        {
-            auto format = [](const std::string &s) -> std::string {
-                std::string out = s;
-                if (s.length() > 10)
-                    return s.substr(0, 9) + ".";
-                while (out.length() < 10)
-                    out = " " + out;
-                return out;
-            };
-
-            std::cout << "|" << format(std::to_string(idx + 1))
-                      << "|" << format(contacts[idx].getName())
-                      << "|" << format(contacts[idx].getLastName())
-                      << "|" << format(contacts[idx].getNickName())
-                      << "|" << std::endl;
-            displayed++;
-        }
+        if (contacts[i].getName().empty())
+            continue;
+        std::string index = std::to_string(i + 1);
+        if (index.length() > 10)
+            index = index.substr(0, 9) + ".";
+        else
+            index = std::string(10 - index.length(), ' ') + index;
+        std::string firstName = contacts[i].getName();
+        if (firstName.length() > 10)
+            firstName = firstName.substr(0, 9) + ".";
+        else
+            firstName = std::string(10 - firstName.length(), ' ') + firstName;
+        std::string lastName = contacts[i].getLastName();
+        if (lastName.length() > 10)
+            lastName = lastName.substr(0, 9) + ".";
+        else
+            lastName = std::string(10 - lastName.length(), ' ') + lastName;
+        std::string nickname = contacts[i].getNickName();
+        if (nickname.length() > 10)
+            nickname = nickname.substr(0, 9) + ".";
+        else
+            nickname = std::string(10 - nickname.length(), ' ') + nickname;
+        std::cout << "|" << index
+                  << "|" << firstName
+                  << "|" << lastName
+                  << "|" << nickname
+                  << "|" << std::endl;
     }
     std::cout << " ------------------------------------------- " << std::endl;
-    
-    if (displayed == 0)
-        return;
-    
+
     int index;
-    std::cout << "Enter contact index: ";
+    std::cout << "Enter contact index (1-8): ";
     std::cin >> index;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    if (index <= 0 || index > 8 || contacts[index - 1].getName().empty())
+
+    if (std::cin.fail() || index < 1 || index > 8 || contacts[index - 1].getName().empty())
     {
         std::cin.clear();
-        std::cout << "\x1B[31mInvalid index\x1B[0m\n" << std::endl;
+        std::cout << "Invalid index!" << std::endl;
     }
     else
-    {
         contacts[index - 1].display();
-        std::cout << std::endl;
-    }
-}
-
-std::string PhoneBook::truncateField(const std::string field) const {
-    if (field.length() > 10)
-        return field.substr(0, 9) + ".";
-    return field;
+    std::cout << std::endl;
 }
