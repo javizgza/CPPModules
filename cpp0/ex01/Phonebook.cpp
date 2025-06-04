@@ -6,7 +6,7 @@
 /*   By: jazarago <jazarago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 10:36:37 by javierzarag       #+#    #+#             */
-/*   Updated: 2025/06/04 11:09:50 by jazarago         ###   ########.fr       */
+/*   Updated: 2025/06/04 12:25:13 by jazarago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ void PhoneBook::searchContact() const
     }
     else
         contacts[index - 1].display();
+    char discard;
+    std::cin.get(discard);
     std::cout << std::endl;
 }

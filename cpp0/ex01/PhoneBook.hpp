@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javierzaragozatejeda <javierzaragozatej    +#+  +:+       +#+        */
+/*   By: jazarago <jazarago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:48 by javierzarag       #+#    #+#             */
-/*   Updated: 2025/06/02 12:26:47 by javierzarag      ###   ########.fr       */
+/*   Updated: 2025/06/04 12:20:32 by jazarago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ class PhoneBook
         Contact contacts[8];
         int count;
         int oldest;
-        std::string truncateField(const std::string field) const;
     public:
         PhoneBook();
         void    addContact();
