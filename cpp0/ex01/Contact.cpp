@@ -6,7 +6,7 @@
 /*   By: javierzaragozatejeda <javierzaragozatej    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 11:44:54 by javierzarag       #+#    #+#             */
-/*   Updated: 2025/06/02 12:39:30 by javierzarag      ###   ########.fr       */
+/*   Updated: 2025/06/03 18:46:12 by javierzarag      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,22 @@ void Contact::display() const {
 }
 
 std::string Contact::getName() const 
-{ return firstName; }
+{ 
+    return (firstName); 
+}
 std::string Contact::getLastName() const 
-{ return lastName; }
+{ 
+    return (lastName); 
+}
 std::string Contact::getNickName() const 
-{ return nickName; }
+{ 
+    return (nickName); 
+}
 std::string Contact::getPhone() const 
-{ return phoneNumber; }
+{ 
+    return (phoneNumber); 
+}
 std::string Contact::getSecret() const 
-{ return darkestSecret; }
+{ 
+    return (darkestSecret); 
+}
