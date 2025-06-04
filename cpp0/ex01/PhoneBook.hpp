@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jazarago <jazarago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javierzaragozatejeda <javierzaragozatej    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 12:18:48 by javierzarag       #+#    #+#             */
-/*   Updated: 2025/06/04 12:20:32 by jazarago         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:43:16 by javierzarag      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class PhoneBook
         int oldest;
     public:
         PhoneBook();
+        ~PhoneBook();
         void    addContact();
         void    searchContact() const;
 };

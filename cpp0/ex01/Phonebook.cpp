@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jazarago <jazarago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javierzaragozatejeda <javierzaragozatej    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/02 10:36:37 by javierzarag       #+#    #+#             */
-/*   Updated: 2025/06/04 12:25:13 by jazarago         ###   ########.fr       */
+/*   Updated: 2025/06/04 17:44:08 by javierzarag      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include "Contact.hpp"
 
 PhoneBook::PhoneBook() : count(0), oldest(0) {}
+
+PhoneBook::~PhoneBook(void)
+{
+	return;
+}
 
 void PhoneBook::addContact()
 {
@@ -77,7 +82,7 @@ void PhoneBook::searchContact() const
 {
     if (count == 0)
     {
-        std::cout << "\nThere are no contacts yet!" << std::endl;
+        std::cout << "\n\x1B[33mThere are no contacts yet!\x1B[0m" << std::endl;
         return;
     }
     std::cout << " ___________________________________________ " << std::endl;
